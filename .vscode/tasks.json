@@ -1,0 +1,110 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "cwd": "${workspaceFolder}",
+    "env": {
+      "YOSYSHQ_ROOT": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\",
+      "PATH": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\bin;C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib;${env:PATH}",
+      "SSL_CERT_FILE": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\etc\\cacert.pem",
+      "PYTHON_EXECUTABLE": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\python3.exe",
+      "QT_PLUGIN_PATH": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\qt5\\plugins",
+      "QT_LOGGING_RULES": "*=false",
+      "GTK_EXE_PREFIX": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\",
+      "GTK_DATA_PREFIX": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\",
+      "GDK_PIXBUF_MODULEDIR": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\gdk-pixbuf-2.0\\2.10.0\\loaders",
+      "GDK_PIXBUF_MODULE_FILE": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\gdk-pixbuf-2.0\\2.10.0\\loaders.cache",
+      "OPENFPGALOADER_SOJ_DIR": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\share\\openFPGALoader"
+    }
+  },
+  "tasks": [
+    {
+      "label": "Install Python Dependencies",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Simulation",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/run_sim.py",
+        "${input:rtlTarget}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Open Waveform",
+      "type": "shell",
+      "command": "python",
+      "dependsOn": "Run Simulation",
+      "args": [
+        "scripts/open_wave.py",
+        "${input:rtlTarget}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate Schematic",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/generate_schematic.py",
+        "${input:rtlTarget}"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Synthesize RTL",
+      "type": "shell",
+      "command": "yosys",
+      "args": [
+        "-p",
+        "read_verilog rtl/${input:rtlTarget}.v; synth; stat"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Plot Results",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/plot_results.py"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Analyze Power",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/analyze_power.py"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "rtlTarget",
+      "type": "promptString",
+      "description": "Enter a target name with matching rtl/<target>.v and tb/tb_<target>.v files",
+      "default": "traffic_light_controller"
+    }
+  ]
+}

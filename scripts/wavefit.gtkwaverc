@@ -1,0 +1,3 @@
+do_initial_zoom_fit on
+scale_to_time_dimension n
+use_full_precision on

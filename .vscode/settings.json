@@ -1,0 +1,15 @@
+{
+  "terminal.integrated.env.windows": {
+    "YOSYSHQ_ROOT": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\",
+    "PATH": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\bin;C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib;${env:PATH}",
+    "SSL_CERT_FILE": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\etc\\cacert.pem",
+    "PYTHON_EXECUTABLE": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\python3.exe",
+    "QT_PLUGIN_PATH": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\qt5\\plugins",
+    "QT_LOGGING_RULES": "*=false",
+    "GTK_EXE_PREFIX": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\",
+    "GTK_DATA_PREFIX": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\",
+    "GDK_PIXBUF_MODULEDIR": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\gdk-pixbuf-2.0\\2.10.0\\loaders",
+    "GDK_PIXBUF_MODULE_FILE": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\lib\\gdk-pixbuf-2.0\\2.10.0\\loaders.cache",
+    "OPENFPGALOADER_SOJ_DIR": "C:\\Users\\willi\\tools\\oss-cad-suite\\oss-cad-suite\\share\\openFPGALoader"
+  }
+}

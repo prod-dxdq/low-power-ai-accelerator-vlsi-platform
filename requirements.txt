@@ -1,0 +1,6 @@
+numpy
+matplotlib
+
+# Later for ML-driven experiments
+# scikit-learn
+# torch
